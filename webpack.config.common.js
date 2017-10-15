@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddisPlugin = require('html-webpack-harddisk-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -7,17 +8,14 @@ const debug = require('debug')('webpack.config.common');
 
 // env is passed in via npm scripts(e.g., webpack --env.isProduction)
 module.exports = (env = {}) => {
-    debug(env);
-    console.log('env in common: ' + env);
-
     let config = {
         entry: {
             polyfills: './src/public/js/polyfills.js',
             main: './src/public/js/main.js'
         },
         output: {
-            filename: '[name].bundle.js',
-            path: path.resolve(__dirname, 'dist')
+            path: path.resolve(__dirname, 'dist'),
+            filename: '[name].bundle.js'
         },
         module: {
             rules: [{
@@ -52,7 +50,11 @@ module.exports = (env = {}) => {
         plugins: [
             new CleanWebpackPlugin(['dist']),
             new HtmlWebpackPlugin({
-                template: 'src/public/index.html'
+                template: 'src/public/index.html',
+                alwaysWriteToDisk: true // html-webpack-harddisk-plugin
+            }),
+            new HtmlWebpackHarddisPlugin({
+                outputPath: path.resolve(__dirname, 'dist')
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common' // name the bundle for common modules across different bundles

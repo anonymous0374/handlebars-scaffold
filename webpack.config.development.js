@@ -8,7 +8,7 @@ module.exports = (env = {}) => {
             new webpack.HotModuleReplacementPlugin()
         ],
         devtool: 'inline-source-map',
-        devServer: {
+        devServer: { // this is for webpack-dev-server
             contentBase: './dist',
             hot: true,
             port: 3000
