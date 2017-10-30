@@ -3,12 +3,12 @@ const common = require('./webpack.config.common.js');
 const webpack = require('webpack');
 
 module.exports = merge(common, {
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    }
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  }
 });
