@@ -57,7 +57,7 @@ module.exports = (env = {}) => {
     plugins: [
       new CleanWebpackPlugin(['dist']),
       new HtmlWebpackPlugin({
-        template: 'src/public/index.hbs' //,
+        template: 'src/public/pages/index/index.hbs' //,
           // alwaysWriteToDisk: true // html-webpack-harddisk-plugin
 
       }),
